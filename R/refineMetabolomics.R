@@ -469,7 +469,7 @@ refineMetabolomics <- function(input_files,
 
     metabolites_mat <- SummarizedExperiment::assay(q[["aggregated"]])
     metabolites_na <- sum(is.na(metabolites_mat))
-    if (metabolites_na > 0) {
+    if (metabolites_na > 0 && impute_method != "none") {
       stop("Metabolite aggregation produced ", metabolites_na, " missing values.")
     }
     mp_assert_finite(metabolites_mat, "after aggregation")
