@@ -557,7 +557,7 @@ refineProteomics <- function(input_files,
 
     proteins_mat <- SummarizedExperiment::assay(q[["aggregated"]])
     proteins_na <- sum(is.na(proteins_mat))
-    if (proteins_na > 0) {
+    if (proteins_na > 0 && impute_method != "none") {
       stop("Protein aggregation produced ", proteins_na, " missing values.")
     }
     mp_assert_finite(proteins_mat, "after aggregation")
